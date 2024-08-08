@@ -11,6 +11,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private bool _isMoving = false;
     [SerializeField] private bool _isRunning = false;
     [SerializeField] private PlayerAnimation _playerAnimation;
+    [SerializeField] private PlayerFlip _playerFlip;
     //Animator animator;
     public Vector2 MoveInput { get { return _moveInput; } private set { _moveInput = value; } }
 
@@ -45,6 +46,7 @@ public class PlayerInput : MonoBehaviour
         _isMoving = _moveInput != Vector2.zero;
 
         EventManager.NotifyAnimation();
+        _playerFlip.SetFacingDirection(_moveInput);
 
         //SetFacingDirection(moveInput);
     }

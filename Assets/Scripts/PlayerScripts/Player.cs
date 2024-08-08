@@ -5,17 +5,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-        [SerializeField] private Rigidbody2D _rigidbody2D;
+    [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private PlayerMovement _playerMovement;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    // Move player from right to left with input
     void FixedUpdate()
     {
         _playerMovement.MovePlayer(_rigidbody2D, _playerInput.MoveInput);

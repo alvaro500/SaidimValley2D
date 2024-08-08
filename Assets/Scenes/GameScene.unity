@@ -338,6 +338,7 @@ GameObject:
   - component: {fileID: 1224434658}
   - component: {fileID: 1224434657}
   - component: {fileID: 1224434656}
+  - component: {fileID: 1224434659}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -475,7 +476,19 @@ MonoBehaviour:
     m_ActionId: eea1e92d-eff6-4d0a-9c59-5a76b2d315f2
     m_ActionName: Player/Move[/Keyboard/upArrow,/Keyboard/w,/Keyboard/downArrow,/Keyboard/s,/Keyboard/leftArrow,/Keyboard/a,/Keyboard/rightArrow,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1224434655}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: OnRun
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 39f48abc-23b6-4d51-ad19-a2ee33136c2a
     m_ActionName: Player/Run[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
@@ -497,6 +510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isMoving: 0
   _isRunning: 0
+  _playerAnimation: {fileID: 1224434659}
 --- !u!114 &1224434656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,3 +562,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1224434659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224434650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c99b8c02b478c895a3eee29e133e3e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 1224434653}

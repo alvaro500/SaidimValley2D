@@ -10,10 +10,11 @@ public class PlayerInput : MonoBehaviour
     private Vector2 _moveInput;
     [SerializeField] private bool _isMoving = false;
     [SerializeField] private bool _isRunning = false;
-    public Vector2 MoveInput { get { return _moveInput; } set { _moveInput = value; } }
+    [SerializeField] private PlayerAnimation _playerAnimation;
+    public Vector2 MoveInput { get { return _moveInput; } private set { _moveInput = value; } }
 
-    public bool IsMoving { get { return _isMoving; } set { _isMoving = value; } }
-    public bool IsRunning { get { return _isRunning; } set { _isRunning = value; } }
+    public bool IsMoving { get { return _isMoving; } set { _isMoving = value; /*_playerAnimation.AnimateWalk(value);*/} }
+    public bool IsRunning { get { return _isRunning; } set { _isRunning = value; /*_playerAnimation.AnimateRun(value);*/ } }
 
 
     // Start is called before the first frame update
@@ -25,7 +26,8 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        _playerAnimation.AnimateWalk(_isMoving);
+        _playerAnimation.AnimateRun(_isRunning);
     }
 
 #pragma warning disable IDE0060, IDE0059

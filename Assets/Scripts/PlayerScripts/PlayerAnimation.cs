@@ -18,10 +18,10 @@ public class PlayerAnimation : MonoBehaviour
         _walkAnimationHashCode = Animator.StringToHash("isMoving");
         _runAnimationHashCode = Animator.StringToHash("isRunning");
         
-        for (int i = 0; i < _animator.parameters.Length; i++)
-        {
-            Debug.Log(_animator.parameters[i].name);
-        }
+        // for (int i = 0; i < _animator.parameters.Length; i++)
+        // {
+        //     Debug.Log(_animator.parameters[i].name);
+        // }
     }
 
     public void AnimateWalk(bool isMoving)

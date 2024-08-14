@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-#pragma warning disable IDE0044
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -34,11 +33,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
-    // void FixedUpdate()
-    // {
-    //     MovePlayer();
-    // }
 
     public void MovePlayer(Rigidbody2D rigidbody2D, Vector2 moveInput)
     {

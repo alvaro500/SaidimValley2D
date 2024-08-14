@@ -27,15 +27,15 @@ public class PlayerFlip : MonoBehaviour
 
     public void SetFacingDirection(Vector2 moveInput)
     {
-        if (moveInput.x > 0 && !IsFacingRight)
+        if (moveInput.x > 0 && !_isFacingRight)
         {
             //Face the right
             IsFacingRight = true;
 
         }
-        else if (moveInput.x < 0 && IsFacingRight)
+        else if (moveInput.x < 0 && _isFacingRight)
         {
-            //Face the right
+            //Face the left
             IsFacingRight = false;
         }
     }

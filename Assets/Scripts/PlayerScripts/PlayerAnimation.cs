@@ -12,6 +12,8 @@ public class PlayerAnimation : MonoBehaviour
     private int _walkAnimationHashCode;
     private int _runAnimationHashCode;
 
+    private int[] _animationHashCode;
+
     private void Awake()
     {
         // StringToHash helps optimize animations a bit
@@ -32,5 +34,10 @@ public class PlayerAnimation : MonoBehaviour
     public void AnimateRun(bool isRunning)
     {
         _animator.SetBool(_runAnimationHashCode, isRunning);
+    }
+
+    public void RunAnimation(bool runAnimation)
+    {
+        //_animator.SetBool
     }
 }

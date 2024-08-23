@@ -10,18 +10,14 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private bool _isMoving = false;
     [SerializeField] private bool _isRunning = false;
     //[SerializeField] private bool _isGrounded;
-    
-    //[SerializeField] private PlayerAnimation _playerAnimation;
+
+    [SerializeField] private PlayerAnimation _playerAnimation;
     [SerializeField] private PlayerFlip _playerFlip;
+    [SerializeField] private TouchingDirections _touchingDirections;
     public Vector2 MoveInput { get { return _moveInput; } private set { _moveInput = value; } }
 
-    public bool IsMoving { get { return _isMoving; } set { _isMoving = value; /*_playerAnimation.AnimateWalk(value);}*/ } }
-    public bool IsRunning { get { return _isRunning; } set { _isRunning = value;/*_playerAnimation.AnimateRun(value);*/ } }
-
-    //[SerializeField] private PlayerAnimation _playerAnimation;
-
-    //public bool IsGrounded { get => _isGrounded; set => _isGrounded = value; }
-
+    public bool IsMoving { get { return _isMoving; } private set { _isMoving = value;} }
+    public bool IsRunning { get { return _isRunning; } private set { _isRunning = value;} }
 
     //private void OnEnable()
     //{
@@ -44,17 +40,17 @@ public class PlayerInput : MonoBehaviour
     //     _playerAnimation.AnimateRun(_isRunning);
     // }
 
-
     public void OnMove(InputAction.CallbackContext context)
     {
         _moveInput = context.ReadValue<Vector2>();
 
         _isMoving = _moveInput != Vector2.zero;
 
-        //EventManager.NotifyAnimation();
-        PlayerAnimation.InvokeAnimation();
+        //Run moving Animation
+        _playerAnimation.RunAnimation(_playerAnimation.AnimationParameterHashes[0], _isMoving);
 
         _playerFlip.SetFacingDirection(_moveInput);
+        Debug.Log("IsMoving");
     }
 
     public void OnRun(InputAction.CallbackContext context)
@@ -68,7 +64,22 @@ public class PlayerInput : MonoBehaviour
             _isRunning = false;
         }
 
+        Debug.Log("IsRunning");
+
         //EventManager.NotifyAnimation();
-        PlayerAnimation.InvokeAnimation();
+        //PlayerAnimation.InvokeAnimation();
+
+        //Run Running Animation
+        _playerAnimation.RunAnimation(_playerAnimation.AnimationParameterHashes[1], _isRunning);
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.started  && _touchingDirections.IsGrounded)
+        {
+            
+        }
+        //EventManager.NotifyAnimation();
+        //PlayerAnimation.InvokeAnimation();
     }
 }

@@ -8,6 +8,8 @@ public class TouchingDirections : MonoBehaviour
     [SerializeField] private ContactFilter2D _contactFilter2D; //Filter to make sure we collide with the correct layers or objects
     private RaycastHit2D[] _groundHits = new RaycastHit2D[5];
     [SerializeField] private float _groundDistance = 0.05f;
+
+    [SerializeField] PlayerAnimation _playerAnimation;
     public bool _isGrounded;
     public bool IsGrounded
     {
@@ -18,7 +20,10 @@ public class TouchingDirections : MonoBehaviour
         private set
         {
             _isGrounded = value;
-            PlayerAnimation.InvokeAnimation();
+            //PlayerAnimation.InvokeAnimation();
+
+            //Run IsGrounded SubStateMachine
+            _playerAnimation.RunAnimation(_playerAnimation.AnimationParameterHashes[2], value);
         }
     }
 

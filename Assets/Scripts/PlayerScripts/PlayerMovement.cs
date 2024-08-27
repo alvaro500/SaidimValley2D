@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //[SerializeField] private bool _isMoving = false;
-    //[SerializeField] private bool _isRunning = false;
+    [SerializeField] PlayerInputController _playerInputController;
 
-    [SerializeField] private PlayerInput _playerInput;
+    //[SerializeField] private PlayerInput _playerInput;
     [SerializeField] private float _walkSpeed = 5f;
     [SerializeField] private float _runSpeed = 8f;
+
+    [SerializeField] private Rigidbody2D _playerRigidbody2D;
+    public Rigidbody2D PlayerRigidbody2D { get => _playerRigidbody2D; set => _playerRigidbody2D = value; }
+
+    //Jump variables
+    [SerializeField] private float _jumpImpulse = 10f;
 
     public float CurrentMoveSpeed
     {
         get
         {
-            if (_playerInput.IsMoving)
+            if (_playerInputController.IsMoving)
             {
-                if (_playerInput.IsRunning)
+                if (_playerInputController.IsRunning)
                 {
                     return _runSpeed;
                 }
@@ -34,8 +39,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void MovePlayer(Rigidbody2D rigidbody2D, Vector2 moveInput)
+    public void MovePlayer(Vector2 moveInput)
     {
-        rigidbody2D.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rigidbody2D.velocity.y);
+        _playerRigidbody2D.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, _playerRigidbody2D.velocity.y);
+    }
+
+    public void Jump()
+    {
+        _playerRigidbody2D.velocity = new Vector2(_playerRigidbody2D.velocity.x, _jumpImpulse);
     }
 }

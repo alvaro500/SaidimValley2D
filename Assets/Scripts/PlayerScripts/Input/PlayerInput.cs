@@ -50,7 +50,7 @@ public class PlayerInput : MonoBehaviour
         _playerAnimation.RunAnimation(_playerAnimation.AnimationParameterHashes[0], _isMoving);
 
         _playerFlip.SetFacingDirection(_moveInput);
-        Debug.Log("IsMoving");
+        //Debug.Log("IsMoving");
     }
 
     public void OnRun(InputAction.CallbackContext context)
@@ -64,7 +64,7 @@ public class PlayerInput : MonoBehaviour
             _isRunning = false;
         }
 
-        Debug.Log("IsRunning");
+        //Debug.Log("IsRunning");
 
         //EventManager.NotifyAnimation();
         //PlayerAnimation.InvokeAnimation();

@@ -20,7 +20,7 @@ public class PlayerAnimation : MonoBehaviour
     //Array int for hashes code from animations strings
     private int[] _animationParameterHashes;
 
-    public int[] AnimationParameterHashes { get { return _animationParameterHashes; } set { _animationParameterHashes = value; }}
+    public int[] AnimationParameterHashes { get { return _animationParameterHashes; } set { _animationParameterHashes = value; } }
 
 
     //Events for Animations
@@ -55,7 +55,7 @@ public class PlayerAnimation : MonoBehaviour
 
         for (int i = 0; i < _parameterCount; i++)
         {
-            Debug.Log(_animator.parameters[i].name);
+            //Debug.Log(_animator.parameters[i].name);
             _animationParameterHashes[i] = _animator.parameters[i].nameHash;
             //Debug.Log("Hash ID generado: " + _animationParameterHashes[i]);
         }
@@ -75,9 +75,20 @@ public class PlayerAnimation : MonoBehaviour
     // {
     //     _animator.SetBool(_groundStateHashCode, isGrounded);
     // }
-    public void RunAnimation(int animationParameterHash, bool runAnimation)
+
+    public void RunAnimation(int animationParameterHash)
     {
-        _animator.SetBool(animationParameterHash, runAnimation);
+        _animator.SetTrigger(animationParameterHash);
+    }
+
+    public void RunAnimation(int animationParameterHash, bool isRunAnimation)
+    {
+        _animator.SetBool(animationParameterHash, isRunAnimation);
+    }
+
+    public void RunAnimation(int animationParameterHash, float floatNumber)
+    {
+        _animator.SetFloat(animationParameterHash, floatNumber);
     }
 
     public static void InvokeAnimation()

@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D _rigidbody2D;
-    [SerializeField] private PlayerInput _playerInput;
+    //[SerializeField] private Rigidbody2D _rigidbody2D;
+    //[SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private PlayerInputController _playerInputController;
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private PlayerAnimation _playerAnimation;
     [SerializeField] private TouchingDirections _touchingDirections;
@@ -21,10 +22,16 @@ public class Player : MonoBehaviour
     //     _playerAnimation.Animate -= PlayMovementAnimations;
     // }
 
+    // private void Update()
+    // {
+   
+    // }
+
     // Move player from right to left with input
     private void FixedUpdate()
     {
-        _playerMovement.MovePlayer(_rigidbody2D, _playerInput.MoveInput);
+        _playerMovement.MovePlayer(_playerInputController.MoveDirection);
+        _playerAnimation.RunAnimation(_playerAnimation.AnimationParameterHashes[3], _playerMovement.PlayerRigidbody2D.velocity.y);
     }
 
 

@@ -20,6 +20,7 @@ public class PlayerFlip : MonoBehaviour
             {
                 // Flip the local scale to make the player face the oposite direction
                 _playerTransform.localScale *= new Vector2(-1, 1);
+                //Debug.Log("Tranform of the player: " + _playerTransform.localScale);
             }
             _isFacingRight = value;
         }

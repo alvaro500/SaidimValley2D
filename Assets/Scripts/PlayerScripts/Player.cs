@@ -22,16 +22,16 @@ public class Player : MonoBehaviour
     //     _playerAnimation.Animate -= PlayMovementAnimations;
     // }
 
-    // private void Update()
-    // {
-   
-    // }
+    private void Update()
+    {
+        //Check speed of fall to the ground
+        _playerAnimation.RunAnimation(_playerAnimation.AnimationParameterHashes[5], _playerMovement.PlayerRigidbody2D.velocity.y);
+    }
 
     // Move player from right to left with input
     private void FixedUpdate()
     {
         _playerMovement.MovePlayer(_playerInputController.MoveDirection);
-        _playerAnimation.RunAnimation(_playerAnimation.AnimationParameterHashes[3], _playerMovement.PlayerRigidbody2D.velocity.y);
     }
 
 

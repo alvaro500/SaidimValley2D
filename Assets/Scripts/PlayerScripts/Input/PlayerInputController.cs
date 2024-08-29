@@ -114,7 +114,7 @@ public class PlayerInputController : MonoBehaviour
 
     private void CheckInputForJump(InputAction.CallbackContext context)
     {
-        Debug.Log("Jump");
+        //Debug.Log("Jump");
         if (context.started && _touchingDirections.IsGrounded)
         {
             //Run Jump animation with trigger

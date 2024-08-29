@@ -15,25 +15,35 @@ public class PlayerMovement : MonoBehaviour
 
     //Jump variables
     [SerializeField] private float _jumpImpulse = 10f;
+    [SerializeField] private TouchingDirections _touchingDirections;
+    [SerializeField] private float _airWalkSpeed = 3f;
 
     public float CurrentMoveSpeed
     {
         get
         {
-            if (_playerInputController.IsMoving)
+            if (_playerInputController.IsMoving && !_touchingDirections.IsOnWall)
             {
-                if (_playerInputController.IsRunning)
+                if (_touchingDirections.IsGrounded)
                 {
-                    return _runSpeed;
+                    if (_playerInputController.IsRunning)
+                    {
+                        return _runSpeed;
+                    }
+                    else
+                    {
+                        return _walkSpeed;
+                    }
                 }
+
                 else
                 {
-                    return _walkSpeed;
+                    //Idle speed is 0
+                    return _airWalkSpeed;
                 }
             }
             else
             {
-                //Idle speed is 0
                 return 0;
             }
         }

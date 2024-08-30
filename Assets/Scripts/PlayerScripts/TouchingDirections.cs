@@ -47,10 +47,10 @@ public class TouchingDirections : MonoBehaviour
         }
     }
 
-
     public bool _isOnCeiling;
 
     private Vector2 _wallCheckDirection => gameObject.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+
     public bool IsOnCeiling
     {
         get
@@ -67,30 +67,26 @@ public class TouchingDirections : MonoBehaviour
         }
     }
 
-    int castIsGrounded;
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         //Cast collider to know if we are on the ground
         IsGrounded = _capsuleCollider2D.Cast(Vector2.down, _contactFilter2D, _groundHits, _groundDistance) > 0;
-        //_capsuleCollider2D.Cast(Vector2.down, _contactFilter2D, _groundHits, )
 
         //Cast collider to know if we are touching a wall
         IsOnWall = _capsuleCollider2D.Cast(_wallCheckDirection, _contactFilter2D, _wallHits, _wallDistance) > 0;
 
         //Cast collider to know if we are touching a ceilling
         IsOnCeiling = _capsuleCollider2D.Cast(Vector2.up, _contactFilter2D, _ceilingHits, _ceilingDistance) > 0;
-
-        //Debug.Log("WallCheckDirection: " + _wallCheckDirection);
-        Debug.Log("castIsGrounded: " + castIsGrounded);
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Vector3 capsuleColliderSizeY = new (0, (_capsuleCollider2D.size.y), 0);
-        Debug.Log(capsuleColliderSizeY);
-        Gizmos.DrawRay(-capsuleColliderSizeY/2, capsuleColliderSizeY);
-    }
+    // private void OnDrawGizmos()
+    // {
+    //     Gizmos.color = Color.blue;
+
+    //     Vector3 capsuleColliderSizeY = new (0, _capsuleCollider2D.size.y, 0);
+    //     Vector3 capsuleColliderHalfSizeY = capsuleColliderSizeY/2;
+    //     Vector3 groundDistanceFromCollider = new (0, _groundDistance, 0);
+
+    //     Gizmos.DrawRay(-capsuleColliderHalfSizeY, -groundDistanceFromCollider);
+    // }
 }

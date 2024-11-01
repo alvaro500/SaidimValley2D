@@ -6,11 +6,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputController : MonoBehaviour
 {
-    private PlayerInputActions _playerInputActions;
+    private PlayerInputActionsScript _playerInputActions;
 
     private InputAction _moveAction;
     private InputAction _runAction;
     private InputAction _jumpAction;
+    private InputAction _attackAction;
 
     [SerializeField] private bool _isMoving = false;
     [SerializeField] private bool _isRunning = false;
@@ -26,7 +27,7 @@ public class PlayerInputController : MonoBehaviour
 
     private void Awake()
     {
-        _playerInputActions = new PlayerInputActions();
+        _playerInputActions = new PlayerInputActionsScript();
     }
 
     private void OnEnable()
@@ -53,6 +54,10 @@ public class PlayerInputController : MonoBehaviour
         _jumpAction = _playerInputActions.Player.Jump;
         _jumpAction.started += callbackContext => CheckInputForJump(callbackContext);
         _jumpAction.Enable();
+
+        _attackAction= _playerInputActions.Player.Attack;
+        _attackAction.started += callbackContext => CheckInputForAttack(callbackContext);
+        _attackAction.Enable();
     }
 
     private void OnDisable()
@@ -66,6 +71,10 @@ public class PlayerInputController : MonoBehaviour
 
         _jumpAction.started -= callbackContext => CheckInputForJump(callbackContext);
         _jumpAction.Disable();
+
+
+        _attackAction.started -= callbackContext => CheckInputForAttack(callbackContext);
+        _attackAction.Disable();
     }
 
     // private void OnMove(InputAction.CallbackContext context)
@@ -121,5 +130,10 @@ public class PlayerInputController : MonoBehaviour
             _playerAnimation.RunAnimation(_playerAnimation.AnimationParameterHashes[4]);
             _playerMovement.Jump();
         }
+    }
+
+        private void CheckInputForAttack(InputAction.CallbackContext context)
+    {
+        Debug.Log("Attack");
     }
 }

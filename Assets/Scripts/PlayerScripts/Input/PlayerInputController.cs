@@ -55,7 +55,7 @@ public class PlayerInputController : MonoBehaviour
         _jumpAction.started += callbackContext => CheckInputForJump(callbackContext);
         _jumpAction.Enable();
 
-        _attackAction= _playerInputActions.Player.Attack;
+        _attackAction = _playerInputActions.Player.Attack;
         _attackAction.started += callbackContext => CheckInputForAttack(callbackContext);
         _attackAction.Enable();
     }
@@ -106,7 +106,7 @@ public class PlayerInputController : MonoBehaviour
     private void CheckInputForRun(InputAction.CallbackContext context)
     {
         //Debug.Log("Run");
-        
+
         if (context.started)
         {
             _isRunning = true;
@@ -132,8 +132,12 @@ public class PlayerInputController : MonoBehaviour
         }
     }
 
-        private void CheckInputForAttack(InputAction.CallbackContext context)
+    private void CheckInputForAttack(InputAction.CallbackContext context)
     {
-        Debug.Log("Attack");
+        if (context.started)
+        {
+            Debug.Log("Attack");
+            _playerAnimation.RunAnimation(_playerAnimation.AnimationParameterHashes[7]);
+        }
     }
 }
